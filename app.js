@@ -13,5 +13,5 @@ app.get('', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`app run at port ${port}`);
+    console.log(`app run at port ${port} db name : ${process.env}`);
 });

@@ -4,7 +4,8 @@ module.exports = {
     insertPhoto: (req, cb) => {
         db('galery').insert({
             nama: req.nama,
-            link: req.link  
+            link: req.link,
+            public_id: req.public_id
         }).then(() => {
             return cb(null, "success submit");
         }).catch((error) => {

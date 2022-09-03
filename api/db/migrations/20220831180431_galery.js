@@ -8,7 +8,7 @@
       table.string('nama', 150).notNullable();
       table.string('public_id', 65);
       table.text('link');
-      table.timestamp('time_upload');
+      table.timestamp('time_upload').defaultTo(knex.fn.now());
     });
   };
   

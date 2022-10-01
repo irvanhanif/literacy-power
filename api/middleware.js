@@ -3,7 +3,12 @@ const { ERROR } = require('./response');
 
 module.exports = {
     tokenValidation: (req, res, next) => {
-        let token = req.get('authorization');
+        let token;
+        try{
+            token = req.get('authorization');
+        }catch(err){
+            return ERROR(res, 500, "Access denied!");
+        }
         if(!token) return ERROR(res, 500, "Access denied!");
         token = token.slice(7);
 

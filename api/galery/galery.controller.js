@@ -42,6 +42,14 @@ module.exports = {
             if(error) return ERROR(res, 500, error);
             
             return SUCCESS(res, 200, result);
-        })
+        });
+    },
+    getPhoto: (req, res) => {
+        req.body.id_galery = req.params.id;
+        detailPhoto(req.body, (error, result) => {
+            if(error) return ERROR(res, 500, error);
+
+            return SUCCESS(res, 200, result);
+        });
     }
 }

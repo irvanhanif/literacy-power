@@ -6,8 +6,10 @@ module.exports = {
             nama: req.nama,
             link: req.link,
             public_id: req.public_id
-        }).then(() => {
-            return cb(null, "success submit");
+        })
+        .returning('*')
+        .then((data) => {
+            return cb(null, data);
         }).catch((error) => {
             return cb(error);
         })

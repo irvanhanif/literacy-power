@@ -12,13 +12,12 @@ const salt = genSaltSync(10);
 module.exports = {
     register: (req, res) => {
         req.body.password = hashSync(req.body.password, salt);
-        return res.json(req.body.password);
-        // insertAdmin(req.body, (error, result) => {
-        //     if(error) return ERROR(res, 500, error);
+        insertAdmin(req.body, (error, result) => {
+            if(error) return ERROR(res, 500, error);
 
-        //     const token = sign({admin: result[0]}, process.env.APP_KEY, {algorithm: "HS256", expiresIn: "24h"});
-        //     return SUCCESS(res, 200, {admin: result[0], token: token});
-        // });
+            const token = sign({admin: result[0]}, process.env.APP_KEY, {algorithm: "HS256", expiresIn: "24h"});
+            return SUCCESS(res, 200, {admin: result[0], token: token});
+        });
     },
     update: (req, res) => {
         req.body.id_admin = req.params.id;

@@ -48,5 +48,13 @@ module.exports = {
         }).catch((error) => {
             return cb(error);
         })
+    },
+    getAllAdmin: (cb) => {
+        db('admin').select()
+        .then((result) => {
+            return cb(null, result);
+        }).catch((error) => {
+            return cb(error);
+        })
     }
 }

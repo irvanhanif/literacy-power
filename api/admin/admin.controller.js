@@ -2,7 +2,8 @@ const {
     insertAdmin,
     updateAdmin,
     deleteAdmin,
-    getAdminByUsername
+    getAdminByUsername,
+    getAllAdmin
 } = require('./admin.service');
 const { compareSync, genSaltSync, hashSync } = require('bcryptjs');
 const { sign } = require('jsonwebtoken');
@@ -43,6 +44,13 @@ module.exports = {
 
             const token = sign({admin: result[0]}, process.env.APP_KEY, {algorithm: "HS256", expiresIn: "24h"});
             return SUCCESS(res, 200, {admin: result[0], token: token});
+        })
+    },
+    allAdmin: (req, res) => {
+        getAllAdmin((error, result) => {
+            if(error) return ERROR(res, 500, error);
+            
+            return SUCCESS(res, 200, result);
         })
     }
 }

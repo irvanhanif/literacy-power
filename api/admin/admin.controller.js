@@ -20,7 +20,7 @@ module.exports = {
             if(result > 0) return ERROR(res, 409, "user is exist");
         
             try{
-                await authSchema.validateAsync(req.body);
+                const validation = await authSchema.validateAsync(req.body);
             }catch(err){
                 return ERROR(res, 500, err.details[0].message);
             }

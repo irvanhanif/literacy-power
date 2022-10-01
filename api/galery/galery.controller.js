@@ -14,6 +14,7 @@ module.exports = {
         
         req.body.nama = req.file.originalname;
         req.body.link = result.secure_url;
+        req.body.public_id = result.public_id;
         insertPhoto(req.body, (error, result) => {
             if(error) return ERROR(res, 500, error);
                 

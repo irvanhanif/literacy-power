@@ -56,5 +56,16 @@ module.exports = {
         }).catch((error) => {
             return cb(error);
         })
+    },
+    checkExistAdmin: (req, cb) => {
+        db('admin')
+        .select()
+        .where(db.raw(`CONCAT(CONCAT("firstName", ' '), "lastName")`), req.username)
+        .count()
+        .then((result) => {
+            return cb(null, result[0].count);
+        }).catch((error) => {
+            return cb(error);
+        })
     }
 }

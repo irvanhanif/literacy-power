@@ -37,6 +37,7 @@ module.exports = {
     },
     login: (req, res) => {
         getAdminByUsername(req.body, (error, result) => {
+            if(error) return ERROR(res, 500, error);
             const verif = compareSync(req.body.password, result[0].password);
             delete result[0].password;
 

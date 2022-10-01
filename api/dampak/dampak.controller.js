@@ -4,16 +4,16 @@ const {
     getAllDampak
 } = require('./dampak.service');
 const { ERROR, SUCCESS } = require('../response');
-const { dampakSchema } = require('../validation.schema');
+// const { dampakSchema } = require('../validation.schema');
 
 module.exports = {
     postDampak: async (req, res) => {
-        let validation;
-        try{
-            validation = await dampakSchema.validateAsync(req.body);
-        }catch(err){
-            return ERROR(res, 500, err.details[0].message);
-        }
+        // let validation;
+        // try{
+        //     validation = await dampakSchema.validateAsync(req.body);
+        // }catch(err){
+        //     return ERROR(res, 500, err.details[0].message);
+        // }
         insertDampak(req.body, (error, result) => {
             if(error) return ERROR(res, 500, error);
             

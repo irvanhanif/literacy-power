@@ -19,12 +19,11 @@ module.exports = {
             if(error) return ERROR(res, 500, error);
             if(result > 0) return ERROR(res, 409, "user is exist");
         
-            // let validation;
-            // try{
-            //     validation = await authSchema.validateAsync(req.body);
-            // }catch(err){
-            //     return ERROR(res, 500, err.details[0].message);
-            // }
+            try{
+                await authSchema.validateAsync(req.body);
+            }catch(err){
+                return ERROR(res, 500, err.details[0].message);
+            }
             req.body.password = hashSync(req.body.password, salt);
             insertAdmin(req.body, (error, result) => {
                 if(error) return ERROR(res, 500, error);

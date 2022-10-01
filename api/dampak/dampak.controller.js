@@ -2,7 +2,7 @@ const {
     insertDampak,
     deleteDampak, 
     getAllDampak
-} = require('./review.service');
+} = require('./dampak.service');
 const { ERROR, SUCCESS } = require('../response');
 
 module.exports = {

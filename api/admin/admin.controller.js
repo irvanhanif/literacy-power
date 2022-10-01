@@ -13,14 +13,14 @@ const { authSchema } = require('../validation.schema');
 const salt = genSaltSync(10);
 
 module.exports = {
-    register: async (req, res) => {
+    register: (req, res) => {
         req.body.username = req.body.firstName + ' ' + req.body.lastName;
-        checkExistAdmin(req.body, (error, result) => {
+        checkExistAdmin(req.body, async (error, result) => {
             if(error) return ERROR(res, 500, error);
             if(result > 0) return ERROR(res, 409, "user is exist");
         
             try{
-                const validation = await authSchema.validateAsync(req.body);
+                await authSchema.validateAsync(req.body);
             }catch(err){
                 return ERROR(res, 500, err.details[0].message);
             }

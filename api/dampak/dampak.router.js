@@ -5,7 +5,7 @@ const {
     postDampak,
     deleteDampak,
     allDampak
-} = require('./review.controller');
+} = require('./dampak.controller');
 
 router.get('/', allDampak);
 router.post('/', tokenValidation, postDampak);

@@ -4,7 +4,7 @@ module.exports = {
     insertDampak: (req, cb) => {
         db('dampak').insert({
             deskripsi: req.deskripsi,
-            link: req.link
+            link_foto: req.link
         }).then(() => {
             return cb(null, "success submit");
         }).catch((error) => {

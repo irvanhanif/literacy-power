@@ -37,7 +37,7 @@ module.exports = {
         })
     },
     allPhoto: (req, res) => {
-        getAllReview((error, result) => {
+        getAllPhoto((error, result) => {
             if(error) return ERROR(res, 500, error);
             
             return SUCCESS(res, 200, result);

@@ -4,11 +4,15 @@ const { tokenValidation } = require('../middleware');
 const {
     postDampak,
     deleteDampak,
-    allDampak
+    allDampak,
+    detailDampak,
+    updateDampak
 } = require('./dampak.controller');
 
 router.get('/', allDampak);
 router.post('/', tokenValidation, postDampak);
-router.delete('/:id', tokenValidation, deleteDampak)
+router.get('/:id', detailDampak);
+router.put('/:id', tokenValidation, updateDampak);
+router.delete('/:id', tokenValidation, deleteDampak);
 
 module.exports = router;

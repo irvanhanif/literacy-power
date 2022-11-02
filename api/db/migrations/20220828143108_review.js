@@ -5,9 +5,10 @@
 exports.up = function(knex) {
   return knex.schema.createTable('review', (table) => {
     table.increments('id_review');
-    table.text('note').notNullable();
-    table.string('name', 100).notNullable();
-    table.string('university', 255).notNullable();
+    table.string('username', 100).notNullable();
+    table.string('userProfession', 150).notNullable();
+    table.text('testimoni').notNullable();
+    table.timestamp('dateCreated').notNullable().defaultTo(knex.fn.now());
   })
 };
 

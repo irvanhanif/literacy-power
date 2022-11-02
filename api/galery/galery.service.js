@@ -4,8 +4,9 @@ module.exports = {
     insertPhoto: (req, cb) => {
         db('galery').insert({
             nama: req.nama,
+            public_id: req.public_id,
             link: req.link,
-            public_id: req.public_id
+            show_on_home: req.show_on_home
         })
         .returning('*')
         .then((data) => {

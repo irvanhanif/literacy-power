@@ -10,6 +10,7 @@ const adminRouter = require('./api/admin/admin.router');
 const reviewRouter = require('./api/review/review.router');
 const galeryRouter = require('./api/galery/galery.router');
 const dampakRouter = require('./api/dampak/dampak.router');
+const bukuRouter = require('./api/buku/buku.router');
 
 app.use(express.json());
 app.use(cors());
@@ -18,7 +19,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use('/admin', adminRouter);
 app.use('/review', reviewRouter);
 app.use('/galery', galeryRouter);
-app.use('/dampak', dampakRouter);
+app.use('/proyek', dampakRouter);
+app.use('/buku', bukuRouter);
 
 app.get('', (req, res) => {
     res.json("aman");

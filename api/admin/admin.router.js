@@ -10,7 +10,7 @@ const {
 } = require('./admin.controller');
 
 router.get('/', tokenValidation, allAdmin)
-router.post('/register', tokenValidation, register);
+router.post('/register', register);
 router.post('/login', login);
 router.put('/update/:id', tokenValidation, update);
 router.delete('/delete/:id', tokenValidation, deleteAdmin);

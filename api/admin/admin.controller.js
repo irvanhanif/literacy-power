@@ -18,7 +18,7 @@ module.exports = {
         checkExistAdmin(req.body, async (error, result) => {
             if(error) return ERROR(res, 500, error);
             if(result > 0) return ERROR(res, 409, "user is exist");
-        
+            delete req.body.username;
             try{
                 await authSchema.validateAsync(req.body);
             }catch(err){

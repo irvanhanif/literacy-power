@@ -6,6 +6,7 @@ const {
 } = require('./galery.service');
 const { ERROR, SUCCESS } = require('../response');
 const cloudinary = require('../storage/cloudinary');
+const { galerySchema } = require('../validation.schema');
 
 module.exports = {
     postPhoto: async (req, res) => {
@@ -15,6 +16,11 @@ module.exports = {
         req.body.nama = req.file.originalname;
         req.body.link = result.secure_url;
         req.body.public_id = result.public_id;
+        try {
+            await galerySchema.validateAsync(req.body);
+        } catch (err) {
+            return ERROR(res, 500, err.details[0].message);
+        }
         insertPhoto(req.body, (error, result) => {
             if(error) return ERROR(res, 500, error);
                 

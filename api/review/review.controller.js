@@ -44,7 +44,7 @@ module.exports = {
     },
     detailReview: (req, res) => {
         req.body.id_review = req.params.id;
-        getReview((error, result) => {
+        getReview(req.body, (error, result) => {
             if(error) return ERROR(res, 500, error);
             
             return SUCCESS(res, 200, result);

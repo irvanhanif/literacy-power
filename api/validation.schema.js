@@ -7,7 +7,7 @@ module.exports = {
         password: joi.string().min(8).max(255).required()
     }),
     reviewSchema: joi.object({
-        username: joi.string().alphanum().min(3).max(100).required(),
+        username: joi.string().min(3).max(100).required(),
         userProfession: joi.string().min(3).max(150).required(),
         testimoni: joi.string().min(3).required()
     }),

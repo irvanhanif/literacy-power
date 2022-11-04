@@ -2,7 +2,8 @@ const {
     insertPhoto,
     deletePhoto,
     getAllPhoto,
-    detailPhoto
+    detailPhoto,
+    searchPhoto
 } = require('./galery.service');
 const { ERROR, SUCCESS } = require('../response');
 const cloudinary = require('../storage/cloudinary');
@@ -32,15 +33,15 @@ module.exports = {
         detailPhoto(req.body, (error, result) => {
             if(error) return ERROR(res, 500, error);
             
-            cloudinary.uploader.destroy(result[0].public_id, (errors, results) => {
-                if(errors) return ERROR(res, 500, errors);
-
+            cloudinary.uploader.destroy(result[0].public_id).then(() => {
                 deletePhoto(req.body, (errors1, results1) => {
                     if(errors1) return ERROR(res, 500, errors1);
 
                     return SUCCESS(res, 200, results1);
                 })
-            });
+            }).catch((errors) => {
+                return ERROR(res, 500, errors);
+            })
         })
     },
     allPhoto: (req, res) => {
@@ -54,6 +55,15 @@ module.exports = {
         req.body.id_galery = req.params.id;
         detailPhoto(req.body, (error, result) => {
             if(error) return ERROR(res, 500, error);
+
+            return SUCCESS(res, 200, result);
+        });
+    },
+    searchPhoto: (req, res) => {
+        req.body.nama = req.params.nama;
+        searchPhoto(req.body, (error, result) => {
+            if(error) return ERROR(res, 500, error);
+            if(result.length == 0) return ERROR(res, 404, "photo not found");
 
             return SUCCESS(res, 200, result);
         });

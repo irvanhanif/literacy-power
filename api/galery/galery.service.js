@@ -39,5 +39,13 @@ module.exports = {
         }).catch((error) => {
             return cb(error);
         })
+    },
+    searchPhoto: (req, cb) => {
+        db.raw(`select * from galery where LOWER(nama) like LOWER('%${req.nama}%')`)
+        .then((result) => {
+            return cb(null, result.rows);
+        }).catch((error) => {
+            return cb(error);
+        })
     }
 }

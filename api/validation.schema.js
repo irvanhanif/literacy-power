@@ -22,7 +22,9 @@ module.exports = {
     }),
     galerySchema: joi.object({
         nama: joi.string().min(3).max(150).required(),
-        show_on_home: joi.boolean().optional()
+        show_on_home: joi.boolean().optional(),
+        link: joi.string().required(),
+        public_id: joi.string().required()
     }),
     bukuSchema: joi.object({
         coverUrl: joi.string().optional(),

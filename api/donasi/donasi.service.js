@@ -19,5 +19,14 @@ module.exports = {
         }).catch((error) => {
             return cb(error);
         })
+    },
+    deleteDonasi: (req, cb) => {
+        db(`${tablename}`).where(`id_${tablename}`, req.id_donasi)
+        .del()
+        .then(() => {
+            return cb(null, "success delete");
+        }).catch((error) => {
+            return cb(error);
+        })
     }
 }

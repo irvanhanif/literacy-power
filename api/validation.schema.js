@@ -12,10 +12,10 @@ module.exports = {
         testimoni: joi.string().min(3).required()
     }),
     dampakSchema: joi.object({
-        thumbnail: joi.string().optional(),
+        thumbnail: joi.number().optional(),
         nama: joi.string().min(3).max(150).required(),
         lokasi: joi.string().min(3).max(150),
-        tanggal: joi.date().allow(null),
+        tanggal: joi.date().required(),
         content: joi.string().required(),
         dampak_sebelum: joi.string().optional(),
         dampak_sesudah: joi.string().optional(),

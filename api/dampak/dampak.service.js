@@ -11,7 +11,7 @@ module.exports = {
             content: req.content,
             dampak_sebelum: req.dampak_sebelum,
             dampak_sesudah: req.dampak_sesudah,
-            link_foto: req.link
+            dokumentasi: req.dokumentasi
         }).then(() => {
             return cb(null, "success submit");
         }).catch((error) => {

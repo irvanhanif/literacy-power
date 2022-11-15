@@ -12,7 +12,7 @@ exports.up = function(knex) {
       .inTable('galery');
     table.string('nama', 150).notNullable();
     table.string('lokasi', 150);
-    table.date('tanggal').notNullable().defaultTo(knex.fn.now());
+    table.date('tanggal').notNullable();
     table.text('content').notNullable();
     table.text('dampak_sebelum');
     table.text('dampak_sesudah');

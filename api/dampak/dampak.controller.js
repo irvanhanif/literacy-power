@@ -10,6 +10,7 @@ const { dampakSchema } = require('../validation.schema');
 
 module.exports = {
     postDampak: async (req, res) => {
+        if(req.body.tanggal == null) req.body.tanggal = new Date();
         try{
             await dampakSchema.validateAsync(req.body);
         }catch(err){

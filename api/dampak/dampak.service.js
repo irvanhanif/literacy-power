@@ -53,8 +53,8 @@ module.exports = {
         })
     },
     getDampak: (req, cb) => {
-        db(`${tablename}`).where('id_proyek', req.id_proyek)
-        .select()
+        db(`${tablename}`)
+        .select().where('id_proyek', req.id_proyek)
         .then((result) => {
             return cb(null, result);
         }).catch((error) => {
